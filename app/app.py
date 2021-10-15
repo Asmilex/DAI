@@ -6,11 +6,36 @@ from ejercicios.regex import aplicar_regex
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 
+
+#
+# ──────────────────────────────────────────────────────────────────────── II ──────────
+#   :::::: S E G U N D A   P R A C T I C A : :  :   :    :     :        :          :
+# ──────────────────────────────────────────────────────────────────────────────────
+#
+
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 
+# Requerimientos:
+#     - Barra de navegación: debe contener...
+#         - Logo del sitio
+#         - Nombre del sitio
+#         - Enlaces a otras páginas
+#         - Mini formulario con login
+#     - Menú vertical
+#     - Espacio para mostrar contenidos
+#     - Pie de página
+
+
+
+#
+# ──────────────────────────────────────────────────────────────────────── I ──────────
+#   :::::: P R I M E R A   P R A C T I C A : :  :   :    :     :        :          :
+# ──────────────────────────────────────────────────────────────────────────────────
+#
 #
 # ───────────────────────────────────────────────────────── PRIMER EJERCICIO ─────
 #
