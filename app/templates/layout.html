@@ -29,6 +29,9 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+  <!--
+    -- ─────────────────────────────────────────────────────────────────── NAVBAR ─────
+    -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -74,8 +77,15 @@
     </div>
   </nav>
 
+  <!--
+    -- ──────────────────────────────────── COLUMNA CON EL SIDEBAR Y EL CONTENIDO ─────
+    -->
   <div class="container-fluid">
     <div class="row flex-nowrap">
+      <!--
+        -- ─────────────────────────────────────────────────── SIDEBAR ─────
+        -->
+
       <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
         <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" style="
         width: 280px;">
@@ -89,56 +99,56 @@
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
               <a href="#" class="nav-link active" aria-current="page">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#home"></use>
-                </svg>
                 Enlace 1
               </a>
             </li>
             <li>
               <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#speedometer2"></use>
-                </svg>
                 Enlace 2
               </a>
             </li>
             <li>
               <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#table"></use>
-                </svg>
                 Enlace 3
               </a>
             </li>
             <li>
               <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#grid"></use>
-                </svg>
                 Enlace 4
               </a>
             </li>
             <li>
               <a href="#" class="nav-link text-white">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#people-circle"></use>
-                </svg>
                 Enlace 5
               </a>
+            </li>
+            <hr>
+            <li>
+              <h4>Páginas recientes</h4>
+              <ul>
+                {% for url in rank %}
+                <li><a href={{url}}>{{url[1:].upper()}}</a></li>
+                {% endfor %}
+              </ul>
             </li>
           </ul>
         </div>
       </div>
+      <!--
+        -- ───────────────────────────────────────────────── CONTENIDO ─────
+        -->
       <div class="col py-3">
         {% block body %} {% endblock %}
       </div>
     </div>
   </div>
 
+  <!--
+    -- ─────────────────────────────────────────────────────────────────── FOOTER ─────
+    -->
   <footer class="footer mt-auto py-3 bg-dark">
     <div class="container">
-      <span class="text-muted">Poco texto</span>
+      <span class="text-muted">Andrés Millán</span>
     </div>
   </footer>
 </body>
