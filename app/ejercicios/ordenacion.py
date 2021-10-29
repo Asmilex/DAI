@@ -10,24 +10,25 @@ def ordenacion_burbuja(lista):
                 lista[j], lista[j + 1] = lista[j + 1], lista[j]
 
 def ordenacion_gnomo(lista):
-    index = 0
-    while index < len(lista):
-        if index == 0:
-            index = index + 1
-        if lista[index] >= lista[index - 1]:
-            index = index + 1
-        else:
-            lista[index], lista[index - 1] = lista[index - 1], lista[index]
-            index = index - 1
+    if len(lista) > 1:
+        index = 0
+        while index < len(lista):
+            if index == 0:
+                index = index + 1
+            if lista[index] >= lista[index - 1]:
+                index = index + 1
+            else:
+                lista[index], lista[index - 1] = lista[index - 1], lista[index]
+                index = index - 1
 
-start = time.time()
-ordenacion_burbuja(arr.copy())
-end = time.time()
+# start = time.time()
+# ordenacion_burbuja(arr.copy())
+# end = time.time()
 
-print("Burbuja tarda " + str(end - start))
+# print("Burbuja tarda " + str(end - start))
 
-start = time.time()
-ordenacion_gnomo(arr.copy())
-end = time.time()
+# start = time.time()
+# ordenacion_gnomo(arr.copy())
+# end = time.time()
 
-print("El gnomo tarda " + str(end - start))
+# print("El gnomo tarda " + str(end - start))

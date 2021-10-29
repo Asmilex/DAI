@@ -45,7 +45,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/index">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -68,11 +68,17 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Deshabilitado</a>
           </li>
         </ul>
+        {% if not username or username == '' %}
         <form class="d-flex" action="/login" method='POST'>
           <input class="form-control me-2" type="text" name="username" placeholder="Nombre de usuario" />
           <input class="form-control me-2" type="password" name="password" placeholder="Contraseña" />
           <button class="btn btn-primary" type="submit">Login</button>
         </form>
+        {% else %}
+        <form class="d-flex" action="/logout" method='GET'>
+          <button class="btn btn-secondary" type="submit">Cerrar sesión</button>
+        </form>
+        {% endif %}
       </div>
     </div>
   </nav>
@@ -98,36 +104,26 @@
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link active" aria-current="page">
-                Enlace 1
+              <a href="/ordenacion" class="nav-link active" aria-current="page">
+                Ordenación
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                Enlace 2
+              <a href="/criba/12345" class="nav-link text-white">
+                Criba (n = 12345)
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
-                Enlace 3
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                Enlace 4
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                Enlace 5
+              <a href="/regex/prueba@ash.com" class="nav-link text-white">
+                Regex (prueba@ash.com)
               </a>
             </li>
             <hr>
             <li>
               <h4>Páginas recientes</h4>
               <ul>
-                {% for url in rank %}
-                <li><a href={{url}}>{{url[1:].upper()}}</a></li>
+                {% for pagina in queue %}
+                <li>{{pagina}}</li>
                 {% endfor %}
               </ul>
             </li>

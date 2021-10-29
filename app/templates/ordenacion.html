@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Página de inicio{% endblock %}
+{% block body %}
+<form action="/ordenacion" method='POST'>
+    <div class="form-group">
+        <label for="numeros">Pon tus números separados por espacios:</label>
+        <input type="text" class="form-text" id="numeros" name="numeros">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<code>{{numeros}}</code>
+
+
+{% endblock %}
