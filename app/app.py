@@ -5,6 +5,8 @@ from ejercicios.criba import criba
 from ejercicios.regex import aplicar_regex
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
+app.secret_key = b'wiutqwoirjksdfjsl'
+
 
 
 #
@@ -30,18 +32,18 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    params = {}
     error = None
+    params['error'] = None
+
     if request.method == 'POST':
         if request.form['username'] != 'admin' or request.form['password'] != 'secret':
-            error = 'Invalid credentials'
+            params['error'] = 'F en el chat colega no te has loggeado correctamente'
         else:
             flash('Te has loggeado')
-            return redirect(url_for('index'))
+            params['username'] = request.form['username']
 
-    return render_template('login.html', error=error)
-
-
-
+    return render_template('login.html', **params)
 
 #
 # ──────────────────────────────────────────────────────────────────────── I ──────────
