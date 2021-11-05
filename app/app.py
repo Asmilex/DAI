@@ -9,22 +9,22 @@ app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key = b'wiutqwoirjksdfjsl'
 db = PickleShareDB('./app/database')
 
+# FIXME Y DE TO
+# NO HACER ESTO EN LA VIDA REAL
+PYTHONHASHSEED = 'fdsfsljfksljfklds39042i4'
+# REPITO, QUE NO LO HAGAS
+# QUE ES HORRIBLE
+# NO TIENE SENTIDO
+# LO HAGO PORQUE ES UNA PRÁCTICA DE JUGUETE
+# QUE ESTÁ ALMACENADO ASÍ COMO ASÍ EN TEXTO PLANO.
+# ESTO Y NADA ES LO MISMO
+
 
 #
 # ──────────────────────────────────────────────────────────────────────── II ──────────
 #   :::::: S E G U N D A   P R A C T I C A : :  :   :    :     :        :          :
 # ──────────────────────────────────────────────────────────────────────────────────
 #
-
-# Requerimientos:
-#     - Barra de navegación: debe contener...
-#         - Logo del sitio
-#         - Nombre del sitio
-#         - Enlaces a otras páginas
-#         - Mini formulario con login
-#     - Menú vertical
-#     - Espacio para mostrar contenidos
-#     - Pie de página
 
 @app.route('/')
 @app.route('/index')
@@ -48,10 +48,15 @@ def login():
         if clave not in db:
             error = 'No existe el usuario en la base de datos'
         else:
+            print(clave)
+            print(db[clave])
+            print(hash(request.form['password']))
             if db[clave]["password_cipher"] != hash(request.form['password']):
                 error = 'Credenciales incorrectas'
             else:
                 params['username'] = request.form['username']
+                params['email'] = db[clave]['email']
+                params['nombre'] = db[clave]['nombre']
                 session['username'] = params['username']
 
     queue_reciente('login')
@@ -89,7 +94,9 @@ def register():
 
     if username and password:
         db['users/' + username] = {
-            "password_cipher": hash(password)
+            "password_cipher": hash(password),
+            "email": '',
+            "nombre": ''
         }
         params['username'] = username
         session['username'] = username
@@ -99,6 +106,27 @@ def register():
     params['error'] = error
 
     return render_template('login.html', **params)
+
+
+@app.route('/update_user', methods=['GET', 'POST'])
+def update_user():
+    params = {}
+
+    username = session['username']
+    clave = 'users/' + username
+
+    db[clave]['email'] = request.form['email']
+    db[clave]['nombre'] = request.form['nombre']
+
+    queue_reciente('register')
+    params['queue'] = session['queue']
+
+    params['username'] = username
+    params['email'] = db[clave]['email']
+    params['nombre'] = db[clave]['nombre']
+
+    return render_template('login.html', **params)
+
 
 #
 # ──────────────────────────────────────────────────────────────────────── I ──────────
