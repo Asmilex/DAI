@@ -69,10 +69,11 @@
           </li>
         </ul>
         {% if not username or username == '' %}
-        <form class="d-flex" action="/login" method='POST'>
+        <form class="d-flex" method='POST'>
           <input class="form-control me-2" type="text" name="username" placeholder="Nombre de usuario" />
           <input class="form-control me-2" type="password" name="password" placeholder="Contraseña" />
-          <button class="btn btn-primary" type="submit">Login</button>
+          <button class="btn btn-primary" type="submit" formaction="/login">Login</button>
+          <button class="btn btn-primary" type="submit" formaction="/register">Registrarse</button>
         </form>
         {% else %}
         <form class="d-flex" action="/logout" method='GET'>

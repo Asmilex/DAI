@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
+from pickleshare import *
 
 from ejercicios.ordenacion import ordenacion_gnomo
 from ejercicios.criba import criba
@@ -6,7 +7,7 @@ from ejercicios.regex import aplicar_regex
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key = b'wiutqwoirjksdfjsl'
-
+db = PickleShareDB('./app/database')
 
 
 #
@@ -42,18 +43,23 @@ def login():
     error = None
 
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'secret':
-            error = 'F en el chat colega no te has loggeado correctamente'
+        clave = 'users/' + request.form['username']
+
+        if clave not in db:
+            error = 'No existe el usuario en la base de datos'
         else:
-            flash('Te has loggeado')
-            params['username'] = request.form['username']
-            session['username'] = params['username']
+            if db[clave]["password_cipher"] != hash(request.form['password']):
+                error = 'Credenciales incorrectas'
+            else:
+                params['username'] = request.form['username']
+                session['username'] = params['username']
 
     queue_reciente('login')
     params['queue'] = session['queue']
     params['error'] = error
 
     return render_template('login.html', **params)
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
@@ -66,6 +72,33 @@ def logout():
     params['username'] = session['username']
 
     return render_template('index.html', **params)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    params = {}
+    error = None
+
+    password = request.form['password']
+    username = request.form['username']
+
+    if not username:
+        error = 'El nombre de usuario está vacío'
+    if not password:
+        error = 'La contraseña está vacía'
+
+    if username and password:
+        db['users/' + username] = {
+            "password_cipher": hash(password)
+        }
+        params['username'] = username
+        session['username'] = username
+
+    queue_reciente('register')
+    params['queue'] = session['queue']
+    params['error'] = error
+
+    return render_template('login.html', **params)
 
 #
 # ──────────────────────────────────────────────────────────────────────── I ──────────
