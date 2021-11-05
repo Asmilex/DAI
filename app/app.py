@@ -31,7 +31,6 @@ PYTHONHASHSEED = 'fdsfsljfksljfklds39042i4'
 def index():
     params = {}
 
-    queue_reciente('index.html')
     params['queue'] = session['queue']
     params['username'] = session['username']
 
@@ -59,7 +58,6 @@ def login():
                 params['nombre'] = db[clave]['nombre']
                 session['username'] = params['username']
 
-    queue_reciente('login')
     params['queue'] = session['queue']
     params['error'] = error
 
@@ -68,11 +66,11 @@ def login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
+    params = {}
+
     session['username'] = ''
     session['queue'] = []
 
-    queue_reciente('logout')
-    params = {}
     params['queue'] = session['queue']
     params['username'] = session['username']
 
@@ -101,7 +99,6 @@ def register():
         params['username'] = username
         session['username'] = username
 
-    queue_reciente('register')
     params['queue'] = session['queue']
     params['error'] = error
 
@@ -118,7 +115,6 @@ def update_user():
     db[clave]['email'] = request.form['email']
     db[clave]['nombre'] = request.form['nombre']
 
-    queue_reciente('register')
     params['queue'] = session['queue']
 
     params['username'] = username
@@ -127,6 +123,15 @@ def update_user():
 
     return render_template('login.html', **params)
 
+
+@app.after_request
+def almacenar_url(response):
+    path = request.url[22:]
+
+    if '.svg' not in path:
+        queue_reciente(path)
+
+    return response
 
 #
 # ──────────────────────────────────────────────────────────────────────── I ──────────
@@ -150,7 +155,6 @@ def ordenacion():
         params['numeros'] = lista
         #return ' '.join(str(n) for n in lista)
 
-    queue_reciente('ordenacion')
     params['queue'] = session['queue']
     params['username'] = session['username']
     return render_template("ordenacion.html", **params)
@@ -160,7 +164,6 @@ def ordenacion():
 
 @app.route('/criba/<int:n>')
 def show_criba(n):
-    queue_reciente('criba')
     return ', '.join(str(a) for a in criba(n))
 
 # ────────────────────────────────────────────────────────────────────────────────
@@ -168,7 +171,6 @@ def show_criba(n):
 @app.route('/regex/<string:cadena>')
 def show_regex(cadena):
     print(cadena)
-    queue_reciente('regex')
     return aplicar_regex(cadena)
 
 
@@ -178,7 +180,6 @@ def show_regex(cadena):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    queue_reciente('404 :(')
     return render_template('404.html'), 404
 
 #
@@ -187,7 +188,6 @@ def page_not_found(e):
 
 @app.route('/svg_extra')
 def show_svg_extra():
-    queue_reciente('svg extra')
     return render_template('svg_extra.html')
 
 
