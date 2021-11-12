@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if error %}
+{%else %}
+
+<h1>Buscador de Pokémon</h1>
+
+<form name="Item_1" action="/mongo" method="POST">
+    <label for="exampleFormControlFile2">Tipo: </label>
+    <select name="pokemon_tipo">
+        {% for tipo in tipos %}
+        <option value="{{ tipo }}" SELECTED>{{ tipo }}</option>
+        {% endfor %}
+    </select>
+    <button class="btn btn-primary" type="submit">Buscar</button>
+</form>
+
+{% for pokemon in lista_pokemon %}
+<li>{{ pokemon }}</li>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

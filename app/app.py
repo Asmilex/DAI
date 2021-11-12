@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, session
 from pickleshare import *
+from pymongo import MongoClient
 
 from ejercicios.ordenacion import ordenacion_gnomo
 from ejercicios.criba import criba
@@ -7,7 +8,10 @@ from ejercicios.regex import aplicar_regex
 
 app = Flask(__name__, static_url_path='/static', template_folder='templates')
 app.secret_key = b'wiutqwoirjksdfjsl'
-db = PickleShareDB('./app/database')
+db_pickleshare = PickleShareDB('./app/database')
+
+client = MongoClient("mongo", 27017)
+db = client.SampleCollections
 
 # FIXME Y DE TO
 # NO HACER ESTO EN LA VIDA REAL
@@ -19,6 +23,29 @@ PYTHONHASHSEED = 'fdsfsljfksljfklds39042i4'
 # QUE ESTÁ ALMACENADO ASÍ COMO ASÍ EN TEXTO PLANO.
 # ESTO Y NADA ES LO MISMO
 
+#
+# ──────────────────────────────────────────────────────────── III ──────────
+#   :::::: P R A C T I C A   3 : :  :   :    :     :        :          :
+# ──────────────────────────────────────────────────────────────────────
+#
+
+@app.route('/mongo', methods=['GET', 'POST'])
+def mongo():
+    params = {}
+    params['queue'] = session['queue']
+    puchimones = db.samples_pokemon
+
+    params["tipos"] = ['Bug 🐛', 'Dragon 🐉', 'Electric ⚡', 'Fighting 👊', 'Fire 🔥', 'Flying 🪶', 'Ghost 👻', 'Grass 🌿', 'Ground 🪱', 'Ice ❄️', 'Normal 💥', 'Poison ☠️', 'Psychic 🔮', 'Rock 🪨', 'Water 🌊']
+
+    if request.method == 'POST':
+        tipo = request.form['pokemon_tipo'].split()[0]
+        app.logger.debug(tipo)
+
+        params['lista_pokemon'] = []
+        for pokemon in puchimones.find({"type": tipo}):
+            params['lista_pokemon'].append(pokemon['name'])
+
+    return render_template('mongo.html', **params)
 
 #
 # ──────────────────────────────────────────────────────────────────────── II ──────────
@@ -44,18 +71,18 @@ def login():
     if request.method == 'POST':
         clave = 'users/' + request.form['username']
 
-        if clave not in db:
+        if clave not in db_pickleshare:
             error = 'No existe el usuario en la base de datos'
         else:
             print(clave)
-            print(db[clave])
+            print(db_pickleshare[clave])
             print(hash(request.form['password']))
-            if db[clave]["password_cipher"] != hash(request.form['password']):
+            if db_pickleshare[clave]["password_cipher"] != hash(request.form['password']):
                 error = 'Credenciales incorrectas'
             else:
                 params['username'] = request.form['username']
-                params['email'] = db[clave]['email']
-                params['nombre'] = db[clave]['nombre']
+                params['email'] = db_pickleshare[clave]['email']
+                params['nombre'] = db_pickleshare[clave]['nombre']
                 session['username'] = params['username']
 
     params['queue'] = session['queue']
@@ -91,7 +118,7 @@ def register():
         error = 'La contraseña está vacía'
 
     if username and password:
-        db['users/' + username] = {
+        db_pickleshare['users/' + username] = {
             "password_cipher": hash(password),
             "email": '',
             "nombre": ''
@@ -112,14 +139,14 @@ def update_user():
     username = session['username']
     clave = 'users/' + username
 
-    db[clave]['email'] = request.form['email']
-    db[clave]['nombre'] = request.form['nombre']
+    db_pickleshare[clave]['email'] = request.form['email']
+    db_pickleshare[clave]['nombre'] = request.form['nombre']
 
     params['queue'] = session['queue']
 
     params['username'] = username
-    params['email'] = db[clave]['email']
-    params['nombre'] = db[clave]['nombre']
+    params['email'] = db_pickleshare[clave]['email']
+    params['nombre'] = db_pickleshare[clave]['nombre']
 
     return render_template('login.html', **params)
 
