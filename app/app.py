@@ -36,14 +36,13 @@ def mongo():
     puchimones = db.samples_pokemon
 
     params["tipos"] = ['Bug 🐛', 'Dragon 🐉', 'Electric ⚡', 'Fighting 👊', 'Fire 🔥', 'Flying 🪶', 'Ghost 👻', 'Grass 🌿', 'Ground 🪱', 'Ice ❄️', 'Normal 💥', 'Poison ☠️', 'Psychic 🔮', 'Rock 🪨', 'Water 🌊']
+    params['lista_pokemon'] = []
 
     if request.method == 'POST':
         tipo = request.form['pokemon_tipo'].split()[0]
-        app.logger.debug(tipo)
 
-        params['lista_pokemon'] = []
         for pokemon in puchimones.find({"type": tipo}):
-            params['lista_pokemon'].append(pokemon['name'])
+            params['lista_pokemon'].append(pokemon)
 
     return render_template('mongo.html', **params)
 
