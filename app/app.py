@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, flash, url_for, redirect, session
+from flask import Flask, render_template, request, flash, url_for, redirect, session, jsonify
 from pickleshare import *
 from pymongo import MongoClient
+from bson.json_util import loads, dumps
 
 from ejercicios.ordenacion import ordenacion_gnomo
 from ejercicios.criba import criba
@@ -56,6 +57,56 @@ def mongo():
             params['lista_pokemon'].append(pokemon)
 
     return render_template('mongo.html', **params)
+
+
+# ───────────────────────────────────────────────────────────────── API REST ─────
+#  Método   URL          Descripción
+#  GET      /pokemon     Pillar todos los Pokémon que contienen en el nombre algo
+#  GET      /pokemon/N   Conseguir el pokémon con ID = N
+#  POST     /pokemon     Crear pokémon
+#  PUT      /pokemon/N   Actualizar info de ID = N
+#  DELETE   /pokemon/N   Borrar pokémon con ID = N
+# ────────────────────────────────────────────────────────────────────────────────
+
+@app.route('/pokemon', methods=['GET'])
+def return_pokemon():
+    puchimones = db.samples_pokemon
+
+    listado = []
+
+    for pokemon in puchimones.find({}):
+        json_str = dumps(pokemon)
+        listado.append(json_str)
+
+    respuesta = jsonify(listado)
+    respuesta.status_code = 200
+
+    return respuesta
+
+
+@app.route('/pokemon/<int:N>', methods=['GET'])
+def return_specific_pokemon(N):
+    puchimones = db.samples_pokemon
+    pokemon = puchimones.find_one({"id": N})
+
+    respuesta = jsonify(dumps(pokemon))
+    respuesta.status_code = 200
+
+    return respuesta
+
+#@app.route('/pokemon/', methods=['POST'])
+#def create_pokemon():
+#    return
+#
+#@app.route('/pokemon/<int:N>', methods=['PUT'])
+#def update_pokemon():
+#    return
+#
+#@app.route('/pokemon/<int:N>', methods=['DELETE'])
+#def delete_pokemon():
+#    return
+#
+
 
 #
 # ──────────────────────────────────────────────────────────────────────── II ──────────
