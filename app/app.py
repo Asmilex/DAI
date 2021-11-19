@@ -39,9 +39,20 @@ def mongo():
     params['lista_pokemon'] = []
 
     if request.method == 'POST':
-        tipo = request.form['pokemon_tipo'].split()[0]
+        tipo      = request.form['pokemon_tipo'].split()[0]
+        debilidad = request.form['pokemon_debilidad'].split()[0]
 
-        for pokemon in puchimones.find({"type": tipo}):
+        params['tipo_seleccionado'] = request.form['pokemon_tipo']
+        params['debilidad_seleccionada'] = request.form['pokemon_debilidad']
+
+        parametros_busqueda = {}
+
+        if tipo != 'Cualquiera':
+            parametros_busqueda['type'] = tipo
+        if debilidad != 'Cualquiera':
+            parametros_busqueda['weaknesses'] = debilidad
+
+        for pokemon in puchimones.find(parametros_busqueda):
             params['lista_pokemon'].append(pokemon)
 
     return render_template('mongo.html', **params)
@@ -57,8 +68,9 @@ def mongo():
 def index():
     params = {}
 
-    params['queue'] = session['queue']
-    params['username'] = session['username']
+    if 'queue' in session and 'username' in session:
+        params['queue'] = session['queue']
+        params['username'] = session['username']
 
     return render_template('index.html', **params)
 

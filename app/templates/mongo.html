@@ -5,10 +5,18 @@
 
 <h1>Buscador de Pokémon</h1>
 <form name="Item_1" action="/mongo" method="POST">
-    <label for="exampleFormControlFile2">Tipo: </label>
+    <label>Tipo: </label>
     <select name="pokemon_tipo">
+        <option value="Cualquiera" selected>Cualquiera</option>
         {% for tipo in tipos %}
-        <option value="{{ tipo }}" SELECTED>{{ tipo }}</option>
+        <option value="{{ tipo }}">{{ tipo }}</option>
+        {% endfor %}
+    </select>
+    <label>Debilidad: </label>
+    <select name="pokemon_debilidad">
+        <option value="Cualquiera" selected>Cualquiera</option>
+        {% for tipo in tipos %}
+        <option value="{{ tipo }}">{{ tipo }}</option>
         {% endfor %}
     </select>
     <button class="btn btn-primary" type="submit">Buscar</button>
@@ -17,8 +25,9 @@
 {% if (lista_pokemon is defined) and lista_pokemon %}
 <br>
 <h2>Estos son tus resultados:</h2>
+<p><strong>Tipo</strong>: {{ tipo_seleccionado }}</p>
+<p><strong>Debilidad seleccionada</strong>: {{ debilidad_seleccionada }}</p>
 {% for pokemon in lista_pokemon %}
-
 <li><img src="{{pokemon.img}}">{{ pokemon.name }} </li>
 
 {% endfor %}
