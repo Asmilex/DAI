@@ -61,7 +61,7 @@ def mongo():
 
 # ───────────────────────────────────────────────────────────────── API REST ─────
 #  Método   URL          Descripción
-#  GET      /pokemon     Pillar todos los Pokémon que contienen en el nombre algo
+#  GET      /pokemon     Pillar todos los Pokémon que contienen en el nombre algo (name_contains)
 #  GET      /pokemon/N   Conseguir el pokémon con ID = N
 #  POST     /pokemon     Crear pokémon
 #  PUT      /pokemon/N   Actualizar info de ID = N
@@ -73,10 +73,17 @@ def return_pokemon():
     puchimones = db.samples_pokemon
 
     listado = []
+    peticion = request.get_json()
 
-    for pokemon in puchimones.find({}):
-        json_str = dumps(pokemon)
-        listado.append(json_str)
+    if peticion and 'name_contains' in peticion:
+        nombre = peticion['name_contains']
+        for pokemon in puchimones.find({"name": {'$regex' : nombre}}):
+            json_str = dumps(pokemon)
+            listado.append(json_str)
+    else:
+        for pokemon in puchimones.find():
+            json_str = dumps(pokemon)
+            listado.append(json_str)
 
     respuesta = jsonify(listado)
     respuesta.status_code = 200
@@ -94,18 +101,61 @@ def return_specific_pokemon(N):
 
     return respuesta
 
-#@app.route('/pokemon/', methods=['POST'])
-#def create_pokemon():
-#    return
-#
-#@app.route('/pokemon/<int:N>', methods=['PUT'])
-#def update_pokemon():
-#    return
-#
-#@app.route('/pokemon/<int:N>', methods=['DELETE'])
-#def delete_pokemon():
-#    return
-#
+@app.route('/pokemon', methods=['POST'])
+def create_pokemon():
+    puchimones = db.samples_pokemon
+    peticion = request.get_json()
+
+    # Deberíamos sanear la petición. Deberíamos. O podría llegarnos el Pokémon Bobby Tables
+    # https://xkcd.com/327/
+
+    if 'id' in peticion:
+        peticion['id'] = float(peticion['id'])
+
+    respuesta = {"status_code": 200}
+
+    if puchimones.find_one({'id': peticion['id']}):
+        respuesta['status_code'] = 500
+        respuesta['Error'] = "El Pokémon ya existía en la base de datos"
+    else:
+        puchimones.insert_one(peticion)
+
+    return respuesta
+
+
+@app.route('/pokemon/<int:N>', methods=['PUT'])
+def update_pokemon(N):
+    puchimones = db.samples_pokemon
+    peticion = request.get_json()
+
+    pokemon = puchimones.update_one(
+        {'id': N},
+        {'$set': {
+            "name" : peticion['name']
+        }}
+    )
+
+    respuesta = jsonify(dumps(puchimones.find_one({'id': N})))
+    respuesta.status_code = 200
+
+    return respuesta
+
+
+@app.route('/pokemon/<int:N>', methods=['DELETE'])
+def delete_pokemon(N):
+    puchimones = db.samples_pokemon
+
+    app.logger.debug(type(N))
+
+    estado = puchimones.delete_one({'id': N})
+
+    respuesta = {}
+    if estado.deleted_count > 0:
+        respuesta['status_code'] = 200
+    else:
+        respuesta['status_code'] = 404
+
+    return respuesta
 
 
 #
