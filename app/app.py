@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, flash, url_for, redirect, session, jsonify
+from flask import Flask, render_template, request, session, jsonify
 from pickleshare import *
 from pymongo import MongoClient
-from bson.json_util import loads, dumps
+from bson.json_util import dumps
 
 from ejercicios.ordenacion import ordenacion_gnomo
 from ejercicios.criba import criba
@@ -37,13 +37,12 @@ def mongo():
     puchimones = db.samples_pokemon
 
     params["tipos"] = ['Bug 🐛', 'Dragon 🐉', 'Electric ⚡', 'Fighting 👊', 'Fire 🔥', 'Flying 🪶', 'Ghost 👻', 'Grass 🌿', 'Ground 🪱', 'Ice ❄️', 'Normal 💥', 'Poison ☠️', 'Psychic 🔮', 'Rock 🪨', 'Water 🌊']
-    params['lista_pokemon'] = []
 
     if request.method == 'POST':
         tipo      = request.form['pokemon_tipo'].split()[0]
         debilidad = request.form['pokemon_debilidad'].split()[0]
 
-        params['tipo_seleccionado'] = request.form['pokemon_tipo']
+        params['tipo_seleccionado']      = request.form['pokemon_tipo']
         params['debilidad_seleccionada'] = request.form['pokemon_debilidad']
 
         parametros_busqueda = {}
@@ -53,6 +52,7 @@ def mongo():
         if debilidad != 'Cualquiera':
             parametros_busqueda['weaknesses'] = debilidad
 
+        params['lista_pokemon'] = []
         for pokemon in puchimones.find(parametros_busqueda):
             params['lista_pokemon'].append(pokemon)
 
@@ -101,6 +101,7 @@ def return_specific_pokemon(N):
 
     return respuesta
 
+
 @app.route('/pokemon', methods=['POST'])
 def create_pokemon():
     puchimones = db.samples_pokemon
@@ -128,7 +129,7 @@ def update_pokemon(N):
     puchimones = db.samples_pokemon
     peticion = request.get_json()
 
-    pokemon = puchimones.update_one(
+    puchimones.update_one(
         {'id': N},
         {'$set': {
             "name" : peticion['name']
@@ -144,9 +145,6 @@ def update_pokemon(N):
 @app.route('/pokemon/<int:N>', methods=['DELETE'])
 def delete_pokemon(N):
     puchimones = db.samples_pokemon
-
-    app.logger.debug(type(N))
-
     estado = puchimones.delete_one({'id': N})
 
     respuesta = {}
