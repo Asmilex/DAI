@@ -9,8 +9,8 @@ class Galeria(models.Model):
         return self.nombre
 
 class Cuadro(models.Model):
-    nombre         = models.CharField(max_length=100)
+    nombre         = models.CharField(max_length=200)
     galeria        = models.ForeignKey(Galeria, on_delete=models.CASCADE)
-    autor          = models.CharField(max_length=100)
+    autor          = models.CharField(max_length=200)
     fecha_creacion = models.DateField(default=timezone.now)
     imagen         = models.ImageField(upload_to='uploads/')

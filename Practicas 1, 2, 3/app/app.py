@@ -67,6 +67,19 @@ def mongo():
 #  PUT      /pokemon/N   Actualizar info de ID = N
 #  DELETE   /pokemon/N   Borrar pokémon con ID = N
 # ────────────────────────────────────────────────────────────────────────────────
+# Peticiones a probar:
+#   http GET localhost:5000/pokemon
+#   http GET localhost:5000/pokemon name_contains=Char
+#
+#   http GET localhost:5000/pokemon/1
+#
+#   http POST localhost:5000/pokemon id=153 name='Quietorl'
+#
+#   http PUT localhost:5000/pokemon/153 name='Apetepore'
+#
+#   http DELETE localhost:5000/pokemon/153
+#
+#   http DELETE localhost:5000/pokemon/153  (Intentarlo otra vez peta)
 
 @app.route('/pokemon', methods=['GET'])
 def return_pokemon():
@@ -287,13 +300,15 @@ def ordenacion():
         lista = request.form['numeros'].split(" ")
         lista = [int(n) for n in lista]
 
-
         ordenacion_gnomo(lista)
         params['numeros'] = lista
         #return ' '.join(str(n) for n in lista)
 
     params['queue'] = session['queue']
-    params['username'] = session['username']
+
+    if 'username' in session:
+        params['username'] = session['username']
+
     return render_template("ordenacion.html", **params)
 
 
