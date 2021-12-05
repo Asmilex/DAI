@@ -1,6 +1,12 @@
 from django.shortcuts import render, HttpResponse
+from django.contrib import messages
 
 from .forms import CrearCuadroForm, CrearGaleriaForm
+from .models import Cuadro, Galeria
+
+import logging
+logger = logging.getLogger('django')
+
 
 def index(request):
     context = {}
@@ -16,7 +22,12 @@ def crear_cuadro(request):
         form = CrearCuadroForm(request.POST)
 
         if form.is_valid():
-             return None
+            nombre_cuadro = form['nombre'].value()
+
+            if Cuadro.objects.filter(nombre=nombre_cuadro).exists():
+                messages.error(request, 'Este cuadro ya existe en la base de datos.')
+            else:
+                form.save()
     else:
         form = CrearCuadroForm()
 
@@ -28,7 +39,13 @@ def crear_galeria(request):
         form = CrearGaleriaForm(request.POST)
 
         if form.is_valid():
-             return None
+            nombre_galeria = form['nombre'].value()
+
+            if Galeria.objects.filter(nombre=nombre_galeria).exists():
+                messages.error(request, 'Esta galería ya existe en la base de datos.')
+            else:
+                form.save()
+
     else:
         form = CrearGaleriaForm()
 

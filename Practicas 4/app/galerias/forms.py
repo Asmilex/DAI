@@ -1,13 +1,16 @@
 from django import forms
-from .models import Cuadro
+from .models import Cuadro, Galeria
 
-class CrearGaleriaForm(forms.Form):
-    nombre = forms.CharField(max_length = 200)
-    direccion = forms.CharField(max_length = 200)
+# Cómo crear correctamente los formularios
+# https://stackoverflow.com/questions/22739701/django-save-modelform
 
-class CrearCuadroForm(forms.Form):
-    nombre = forms.CharField(max_length=200)
-    galeria = forms.ModelChoiceField(queryset=Cuadro.objects.all(), to_field_name='nombre')
-    autor = forms.CharField(max_length=200)
-    fecha = forms.DateField()
-    imagen = forms.ImageField() #https://docs.djangoproject.com/en/3.2/ref/forms/api/#binding-uploaded-files
+class CrearGaleriaForm(forms.ModelForm):
+    class Meta:
+        model = Galeria
+        fields = '__all__'
+
+class CrearCuadroForm(forms.ModelForm):
+    #https://docs.djangoproject.com/en/3.2/ref/forms/api/#binding-uploaded-files
+    class Meta:
+        model = Cuadro
+        fields = '__all__'

@@ -1,45 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<h1>Creación</h1>
+<h3>Nueva galería</h3>
+<form action="/crear_galeria" method="POST">
+  {% csrf_token %} {{ crear_galeria_form|crispy}}
+  <button type="submit" class="btn btn-primary">Registrar galería</button>
+</form>
 
-<body>
-    <h1>
-        Crear cuadro
-    </h1>
+{% if messages %}
+<!-- Considerar usar form errors:
+https://stackoverflow.com/questions/47923952/python-django-how-to-display-error-messages-on-invalid-login -->
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} text-danger"{% endif %}> Error: {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-    <form action="/crear_cuadro" method="POST">
-        {% csrf_token %}
-        {{ crear_cuadro_form }}
-        <input type="submit" value="Submit">
-    </form>
+<h3>Nuevo cuadro</h3>
+<form action="/crear_cuadro" method="POST">
+  {% csrf_token %} {{ crear_cuadro_form | crispy }}
+  <button type="submit" class="btn btn-primary">Crear cuadro</button>
+</form>
 
-    <h1>
-        Crear galería
-    </h1>
+<br />
 
-    <form action="/crear_galeria" method="POST">
-        {% csrf_token %}
-        {{ crear_galeria_form }}
-        <input type="submit" value="Submit">
-    </form>
+<h1>Añadir</h1>
 
-    <h1>
-        Añadir
-    </h1>
+<br />
 
-    <h1>
-        Borrar
-    </h1>
+<h1>Borrar</h1>
 
-    <h1>
-        Modificar
-    </h1>
-</body>
+<br />
 
-</html>
+<h1>Modificar</h1>
+{% endblock %}
