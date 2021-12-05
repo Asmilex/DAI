@@ -50,3 +50,16 @@ def crear_galeria(request):
         form = CrearGaleriaForm()
 
     return render(request, 'index.html', {'crear_galeria_form': form})
+
+
+def borrar_galeria(request):
+    pass
+
+def borrar_cuadro(request):
+    pass
+
+def actualizar_galeria(request):
+    pass
+
+def actualizar_cuadro(request):
+    pass
