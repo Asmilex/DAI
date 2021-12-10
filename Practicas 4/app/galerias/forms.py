@@ -22,12 +22,6 @@ class BorrarGaleriaForm(forms.ModelForm):
         fields = ['nombre']
 
 
-class ActualizarGaleriaForm(forms.ModelForm):
-    class Meta:
-        model = Galeria
-        fields = '__all__' # FIXME ¿campos obligatorios?
-
-
 class SeleccionarGaleria(forms.Form):
     galerias = forms.ModelChoiceField(queryset=Galeria.objects.all())
 

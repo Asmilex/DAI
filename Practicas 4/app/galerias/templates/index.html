@@ -1,70 +1,116 @@
 {% extends 'base.html' %} {% block content %} {% load crispy_forms_tags %}
 
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Create two equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
+
 <h1>Creación</h1>
-<h3>Nueva galería</h3>
-<form action="/crear_galeria" method="POST">
-  {% csrf_token %} {{ crear_galeria_form|crispy}}
-  <button type="submit" class="btn btn-primary">Registrar galería</button>
-</form>
 
-{% if messages %}
-<!-- Considerar usar form errors:
-https://stackoverflow.com/questions/47923952/python-django-how-to-display-error-messages-on-invalid-login -->
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }} text-danger"{% endif %}> Error: {{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 
-<h3>Nuevo cuadro</h3>
-<form action="/crear_cuadro" method="POST" enctype="multipart/form-data">
-  {% csrf_token %} {{ crear_cuadro_form | crispy }}
-  <button type="submit" class="btn btn-primary">Crear cuadro</button>
-</form>
+<div class="row">
+  <div class="column" style="background-color:#ecf0f1;">
+    <h3>Nueva galería</h3>
+    <form action="/crear_galeria" method="POST">
+      {% csrf_token %} {{ crear_galeria_form|crispy}}
+      <button type="submit" class="btn btn-primary">Crear galería</button>
+    </form>
+
+    {% if messages %}
+    <!-- Considerar usar form errors:
+    https://stackoverflow.com/questions/47923952/python-django-how-to-display-error-messages-on-invalid-login -->
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }} text-danger"{% endif %}> Error: {{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <div class="column" style="background-color:#ecf0f1;">
+    <h3>Nuevo cuadro</h3>
+    <form action="/crear_cuadro" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ crear_cuadro_form | crispy }}
+      <button type="submit" class="btn btn-primary">Crear cuadro</button>
+    </form>
+  </div>
+</div>
+
 
 <br />
 
-<h1>Añadir</h1>
-
-<br />
+<h1>Modificación</h1>
 
 
+<div class="row">
+  <div class="column" style="background-color:#ecf0f1;">
+    <h3>Galerías</h3>
 
-<br />
+    <form action="/formulario_edit_galeria" method="POST">
+      {% csrf_token %} {{ seleccionar_galeria_form|crispy}}
+      <button type="submit" class="btn btn-primary">Seleccionar</button>
+    </form>
 
-<h1>Modificación y selección</h1>
 
-<h3>Galerías</h3>
+    {% if id_galeria %}
+      <form action="actualizar_galeria/{{ id_galeria }}" method="POST">
+        {% csrf_token %} {{ actualizar_galeria_form|crispy}}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </form>
+    {% endif %}
+  </div>
+  <div class="column" style="background-color:#ecf0f1;">
+    <h3>Cuadros</h3>
 
-{% csrf_token %} {{ seleccionar_galeria_form|crispy}}
+    <form action="/actualizar_cuadro" method="POST">
+      {% csrf_token %} {{ actualizar_cuadro|crispy}}
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
 
-<form action="/actualizar_galeria" method="POST">
-  {% csrf_token %} {{ actualizar_galeria_form|crispy}}
-  <button type="submit" class="btn btn-primary">Actualizar</button>
-</form>
+  </div>
+</div>
+
 
 <br>
 
-<form action="/borrar_galeria" method="POST">
-  {% csrf_token %} {{ seleccionar_galeria_form|crispy}}
-  <button type="submit" class="btn btn-primary">Borrar</button>
-</form>
+<h1>Borrado</h1>
 
 
-<h3>Cuadros</h3>
 
-<form action="/actualizar_cuadro" method="POST">
-  {% csrf_token %} {{ actualizar_cuadro|crispy}}
-  <button type="submit" class="btn btn-primary">Actualizar</button>
-</form>
+<div class="row">
+  <div class="column" style="background-color:#ecf0f1;">
+    <form action="/borrar_galeria" method="POST">
+      {% csrf_token %} {{ seleccionar_galeria_form|crispy}}
+      <button type="submit" class="btn btn-primary">Borrar</button>
+    </form>
+  </div>
+  <div class="column" style="background-color:#ecf0f1;">
+    <form action="/borrar_cuadro" method="POST">
+      {% csrf_token %} {{ seleccionar_cuadro_form|crispy}}
+      <button type="submit" class="btn btn-primary">Borrar</button>
+    </form>
+  </div>
+</div>
+
+
+
 
 <br>
 
-<form action="/borrar_cuadro" method="POST">
-  {% csrf_token %} {{ seleccionar_cuadro_form|crispy}}
-  <button type="submit" class="btn btn-primary">Borrar</button>
-</form>
 
 
 {% endblock %}

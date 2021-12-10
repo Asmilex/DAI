@@ -78,8 +78,35 @@ def borrar_cuadro(request):
     return render(request, 'index.html', {'seleccionar_cuadro_form': SeleccionarCuadro()})
 
 
-def actualizar_galeria(request):
-    pass
+def actualizar_galeria(request, pk):
+    if pk:
+        instancia = Galeria.objects.get(pk = pk)
+    else:
+        instancia = None
+
+    form = CrearGaleriaForm(request.POST, instance=instancia)
+
+    if form.is_valid():
+        form.save()
+
+    return render(request, 'index.html')
+
 
 def actualizar_cuadro(request):
     pass
+
+
+
+def formulario_edit_galeria(request):
+    form = SeleccionarGaleria(request.POST)
+
+    context = {}
+
+    if form.is_valid():
+        instancia = Galeria.objects.get(id = form['galerias'].value())
+        context['actualizar_galeria_form'] = CrearGaleriaForm(instance = instancia)
+        context['id_galeria'] = instancia.id
+    else:
+        context['seleccionar_galeria_form'] = SeleccionarGaleria()
+
+    return render(request, 'index.html', context)
