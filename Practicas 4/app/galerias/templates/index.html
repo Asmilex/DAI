@@ -29,34 +29,41 @@ https://stackoverflow.com/questions/47923952/python-django-how-to-display-error-
 
 <br />
 
-<h1>Borrar</h1>
 
-<h3>Borrar galería</h3>
-<form action="/borrar_galeria" method="DELETE">
-  {% csrf_token %} {{ borrar_galeria_form|crispy}}
-  <button type="submit" class="btn btn-primary">Borrar</button>
-</form>
-
-<h3>Borrar cuadro</h3>
-<form action="/borrar_cuadro" method="DELETE">
-  {% csrf_token %} {{ borrar_cuadro|crispy}}
-  <button type="submit" class="btn btn-primary">Borrar</button>
-</form>
 
 <br />
 
-<h1>Modificar</h1>
+<h1>Modificación y selección</h1>
 
-<h3>Modificar galería</h3>
+<h3>Galerías</h3>
+
+{% csrf_token %} {{ seleccionar_galeria_form|crispy}}
+
 <form action="/actualizar_galeria" method="POST">
   {% csrf_token %} {{ actualizar_galeria_form|crispy}}
   <button type="submit" class="btn btn-primary">Actualizar</button>
 </form>
 
-<h3>Modificar cuadro</h3>
+<br>
+
+<form action="/borrar_galeria" method="POST">
+  {% csrf_token %} {{ seleccionar_galeria_form|crispy}}
+  <button type="submit" class="btn btn-primary">Borrar</button>
+</form>
+
+
+<h3>Cuadros</h3>
+
 <form action="/actualizar_cuadro" method="POST">
   {% csrf_token %} {{ actualizar_cuadro|crispy}}
   <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+
+<br>
+
+<form action="/borrar_cuadro" method="POST">
+  {% csrf_token %} {{ seleccionar_cuadro_form|crispy}}
+  <button type="submit" class="btn btn-primary">Borrar</button>
 </form>
 
 

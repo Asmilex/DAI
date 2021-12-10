@@ -14,3 +14,6 @@ class Cuadro(models.Model):
     autor          = models.CharField(max_length=200)
     fecha_creacion = models.DateField(default=timezone.now)
     imagen         = models.ImageField(upload_to='uploads/')
+
+    def __str__(self):
+        return self.nombre + ", de " + self.autor

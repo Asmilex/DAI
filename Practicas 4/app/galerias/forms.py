@@ -28,6 +28,9 @@ class ActualizarGaleriaForm(forms.ModelForm):
         fields = '__all__' # FIXME ¿campos obligatorios?
 
 
+class SeleccionarGaleria(forms.Form):
+    galerias = forms.ModelChoiceField(queryset=Galeria.objects.all())
+
 #
 # ────────────────────────────────────────────────────────────────── CUADROS ─────
 #
@@ -43,12 +46,10 @@ class CrearCuadroForm(forms.ModelForm):
         }
 
 
-class BorrarCuadroForm(forms.ModelForm):
-    class Meta:
-        model = Cuadro
-        fields = ['nombre']
-
 class ActualizarGaleriaForm(forms.ModelForm):
     class Meta:
         model = Cuadro
         fields = '__all__' # FIXME
+
+class SeleccionarCuadro(forms.Form):
+    cuadros = forms.ModelChoiceField(queryset=Cuadro.objects.all())

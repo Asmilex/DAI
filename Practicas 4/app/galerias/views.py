@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.contrib import messages
 
-from .forms import CrearCuadroForm, CrearGaleriaForm
+from .forms import *
 from .models import Cuadro, Galeria
 
 import logging
@@ -10,6 +10,13 @@ logger = logging.getLogger('django')
 
 def index(request):
     context = {}
+
+    seleccion_galeria = SeleccionarGaleria()
+    seleccion_cuadro = SeleccionarCuadro()
+
+    context['seleccionar_galeria_form'] = seleccion_galeria
+    context['seleccionar_cuadro_form'] = seleccion_cuadro
+
     return render(request, 'index.html', context)
 
 """ def test_template(request):
@@ -19,7 +26,8 @@ def index(request):
 
 def crear_cuadro(request):
     if request.method == 'POST':
-        form = CrearCuadroForm(request.POST)
+        form = CrearCuadroForm(request.POST, request.FILES)
+        print(request.POST)
 
         if form.is_valid():
             nombre_cuadro = form['nombre'].value()
@@ -53,10 +61,22 @@ def crear_galeria(request):
 
 
 def borrar_galeria(request):
-    pass
+    form = SeleccionarGaleria(request.POST)
+
+    if form.is_valid():
+        print(form['galerias'].value())
+        Galeria.objects.filter(id = form['galerias'].value()).delete()
+
+    return render(request, 'index.html', {'seleccionar_galeria_form': SeleccionarGaleria()})
 
 def borrar_cuadro(request):
-    pass
+    form = SeleccionarCuadro(request.POST)
+
+    if form.is_valid():
+        Cuadro.objects.filter(id = form['cuadros'].value()).delete()
+
+    return render(request, 'index.html', {'seleccionar_cuadro_form': SeleccionarCuadro()})
+
 
 def actualizar_galeria(request):
     pass
