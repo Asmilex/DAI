@@ -76,10 +76,18 @@
   <div class="column" style="background-color:#ecf0f1;">
     <h3>Cuadros</h3>
 
-    <form action="/actualizar_cuadro" method="POST">
-      {% csrf_token %} {{ actualizar_cuadro|crispy}}
-      <button type="submit" class="btn btn-primary">Actualizar</button>
+    <form action="/formulario_edit_cuadro" method="POST">
+      {% csrf_token %} {{ seleccionar_cuadro_form|crispy}}
+      <button type="submit" class="btn btn-primary">Seleccionar</button>
     </form>
+
+
+    {% if id_cuadro %}
+      <form action="actualizar_cuadro/{{ id_cuadro }}" method="POST">
+        {% csrf_token %} {{ actualizar_cuadro_form|crispy}}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </form>
+    {% endif %}
 
   </div>
 </div>
