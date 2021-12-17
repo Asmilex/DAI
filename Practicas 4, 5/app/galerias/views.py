@@ -38,7 +38,6 @@ def mostrar_cuadros(request):
 def crear_cuadro(request):
     model_name = 'cuadro'
     all_perms_on_this_modal = Permission.objects.filter(codename__contains=model_name)
-    print(all_perms_on_this_modal)
 
     if 'nombre' in request.POST:
         form = CrearCuadroForm(request.POST, request.FILES)

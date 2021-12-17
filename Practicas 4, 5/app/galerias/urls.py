@@ -15,5 +15,4 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('lista_galerias', views.mostrar_galerias, name='lista_galerias'),
     path('lista_cuadros', views.mostrar_cuadros, name='lista_cuadros'),
-
 ]
