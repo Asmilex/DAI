@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -12,4 +12,6 @@ urlpatterns = [
     path('actualizar_cuadro/<int:pk>', views.actualizar_cuadro, name='index'),
     path('formulario_edit_galeria', views.formulario_edit_galeria, name='index'),
     path('formulario_edit_cuadro', views.formulario_edit_cuadro, name='index'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
 ]
