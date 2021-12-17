@@ -22,7 +22,14 @@ def mostrar_galerias(request):
     context = {
         "galerias": galerias
     }
-    return render(request, 'index.html', context)
+    return render(request, 'lista_galerias.html', context)
+
+def mostrar_cuadros(request):
+    cuadros = Cuadro.objects.all()
+    context = {
+        "cuadros": cuadros
+    }
+    return render(request, 'lista_cuadros.html', context)
 
 # ────────────────────────────────────────────────────────────────────────────────
 
