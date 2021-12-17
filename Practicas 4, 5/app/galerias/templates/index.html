@@ -24,11 +24,16 @@
 
 <div class="row">
   <div class="column" style="background-color:#ecf0f1;">
+
     <h4>Nueva galería</h4>
+    {% if perms.galerias.add_galeria %}
     <form action="/crear_galeria" method="POST">
       {% csrf_token %} {{ crear_galeria_form|crispy}}
       <button type="submit" class="btn btn-primary">Crear galería</button>
     </form>
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
+    {% endif %}
 
     {% if messages %}
     <!-- Considerar usar form errors:
@@ -40,12 +45,17 @@
     </ul>
     {% endif %}
   </div>
+
   <div class="column" style="background-color:#ecf0f1;">
     <h4>Nuevo cuadro</h4>
+    {% if perms.galerias.add_cuadro %}
     <form action="/crear_cuadro" method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{ crear_cuadro_form | crispy }}
       <button type="submit" class="btn btn-primary">Crear cuadro</button>
     </form>
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
+    {% endif %}
   </div>
 </div>
 
@@ -58,6 +68,7 @@
   <div class="column" style="background-color:#ecf0f1;">
     <h4>Cambiar galería</h4>
 
+    {% if perms.galerias.change_galeria %}
     <form action="/formulario_edit_galeria" method="POST">
       {% csrf_token %} {{ seleccionar_galeria_form|crispy}}
       <button type="submit" class="btn btn-primary">Seleccionar</button>
@@ -65,15 +76,22 @@
 
 
     {% if id_edit_galeria %}
-      <form action="actualizar_galeria/{{ id_edit_galeria }}" method="POST">
-        {% csrf_token %} {{ actualizar_galeria_form|crispy}}
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-      </form>
+
+    <form action="actualizar_galeria/{{ id_edit_galeria }}" method="POST">
+      {% csrf_token %} {{ actualizar_galeria_form|crispy}}
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+
+    {% endif %}
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
     {% endif %}
   </div>
+
   <div class="column" style="background-color:#ecf0f1;">
     <h4>Cambiar cuadro</h4>
 
+    {% if perms.galerias.change_cuadro %}
     <form action="/formulario_edit_cuadro" method="POST">
       {% csrf_token %} {{ seleccionar_cuadro_form|crispy}}
       <button type="submit" class="btn btn-primary">Seleccionar</button>
@@ -86,6 +104,9 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
       </form>
     {% endif %}
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
+    {% endif %}
 
   </div>
 </div>
@@ -97,18 +118,27 @@
 <div class="row">
   <div class="column" style="background-color:#ecf0f1;">
     <h4>Borrar galería</h4>
+
+    {% if perms.galerias.delete_galeria %}
     <form action="/borrar_galeria" method="POST">
       {% csrf_token %} {{ borrar_galeria_form|crispy}}
       <button type="submit" class="btn btn-primary">Borrar</button>
     </form>
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
+    {% endif %}
   </div>
 
   <div class="column" style="background-color:#ecf0f1;">
     <h4>Borrar cuadro</h4>
+    {% if perms.galerias.delete_cuadro %}
     <form action="/borrar_cuadro" method="POST">
       {% csrf_token %} {{ borrar_cuadro_form|crispy}}
       <button type="submit" class="btn btn-primary">Borrar</button>
     </form>
+    {% else %}
+    <i>Lo siento, no tienes permisos para esto</i>
+    {% endif %}
   </div>
 </div>
 
