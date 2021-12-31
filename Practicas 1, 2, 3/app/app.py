@@ -157,9 +157,7 @@ def update_pokemon(N):
 
     puchimones.update_one(
         {'id': N},
-        {'$set': {
-            "name" : peticion['name']
-        }}
+        {'$set': peticion}
     )
 
     respuesta = jsonify(dumps(puchimones.find_one({'id': N})))
