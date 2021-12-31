@@ -65,7 +65,7 @@ function editar_pokemon() {
   const debilidad_input = document.getElementById("edit_debilidades_pokemon")
   const imagen_input = document.getElementById("edit_imagen_pokemon")
 
-  id = id_input.value.trim()
+  const id = id_input.value.trim()
 
   const pokemon = {
     // Get the value inside the input field
@@ -93,6 +93,23 @@ function editar_pokemon() {
       imagen_input.value = ""
     }
   })
+}
+
+function delete_pokemon() {
+  const id_input = document.getElementById("delete_id_pokemon")
+  const id = id_input.value.trim()
+
+  $.ajax({
+    'url': "/pokemon/" + id,
+    'method': "DELETE",
+    'processData': false,
+
+    success: function(data) {
+      cargar_pokemon()
+      // Clean the input fields
+      id_input.value = ""
+    }
+  })
 
 }
 
@@ -111,7 +128,7 @@ function mostrar(data) {
       <td>
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-info"
           data-toggle="modal"
           data-target="#editPokemonModal"
           data-identificador="${elemento['num']}"
@@ -123,7 +140,15 @@ function mostrar(data) {
           Editar
         </button>
 
-        <a href="#deletePokemonModal" class="delete" data-toggle="modal" data-id=${elemento['num']}><i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete"></i></a>
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-toggle="modal"
+          data-target="#deletePokemonModal"
+          data-identificador="${elemento['num']}"
+        >
+          Borrar
+        </button>
       </td>
       </tr>`
     )

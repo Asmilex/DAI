@@ -348,20 +348,23 @@
     <main class="mt-5 mb-5">
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col text-center">
             <h1>Práctica 6: Frontend</h1>
           </div>
         </div>
         <div class="row mt-5">
           <div class="col-sm">
-            <h2>Pokémon</h2>
-            <a
-              href="#addPokemonModal"
-              class="btn btn-success"
-              data-toggle="modal"
-              ><i class="material-icons">catching_pokemon</i>
-              <span>Añadir nuevo Pokémon</span></a
-            >
+            <div class="text-center">
+              <h2>Tabla de Pokémon</h2>
+              <a
+                href="#addPokemonModal"
+                class="btn btn-success"
+                data-toggle="modal"
+                ><i class="material-icons">catching_pokemon</i>
+                <span>Añadir</span></a
+              >
+            </div>
+            <br />
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
@@ -377,102 +380,7 @@
             </table>
 
             <br />
-            <h2>Código de ejemplo para ver el tema oscuro</h2>
-            <p>
-              Puedes pulsar el botón <code>copy</code> para copiar el contenido.
-              Es el código usado para poner el tema oscuro.
-            </p>
 
-            <div class="d-clipboard">
-              <button
-                type="button"
-                class="btn btn-outline-info btn-sm btn-clipboard"
-                title=""
-                data-original-title="Copy to clipboard"
-              >
-                Copy
-              </button>
-            </div>
-            <div class="code">
-              <pre
-                class="language-html"
-              ><code class=" language-js language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
-    <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-      <span class="token comment">// This code uses `localStorage` to save "user prefers color" persistently</span>
-      <span class="token comment">// This key used is `user-prefers-color`, and should be one of:</span>
-      <span class="token comment">//  0 = only used at first trigger, to indicate firts time selection</span>
-      <span class="token comment">//  1 = user wants light mode</span>
-      <span class="token comment">//  2 = user wants dark mode</span>
-      <span class="token comment">// the key can also be deleted to indicate user has no preference.</span>
-
-      <span class="token comment">// function to toggle the css</span>
-      <span class="token keyword">function</span> <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span><span class="token parameter">$mode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// amend the body classes</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>$mode <span class="token operator">==</span> <span class="token string">'dark'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-          <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment">// if on user prefers color then update stored value</span>
-        $upc <span class="token operator">=</span> window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>$upc <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token keyword">if</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// first time click</span>
-          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$mode <span class="token operator">==</span> <span class="token string">'dark'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">2</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span>
-
-      <span class="token comment">// function / listener action to toggle the button</span>
-      <span class="token keyword">function</span> <span class="token function">update_color_scheme_css</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        $upc <span class="token operator">=</span> window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>$upc <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          $mode <span class="token operator">=</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>matchMedia <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>matches<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'dark'</span> <span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-          $mode <span class="token operator">=</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'dark'</span> <span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-toggle-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'dark'</span> <span class="token operator">==</span> $mode<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span>$mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-
-      <span class="token comment">// initial mode discovery &amp; update button</span>
-      <span class="token function">update_color_scheme_css</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
-        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-      <span class="token comment">// update every time it changes</span>
-      <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>matchMedia<span class="token punctuation">)</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span> update_color_scheme_css <span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-      <span class="token comment">// toggle button click code</span>
-      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-toggle-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// disable further automatic toggles</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
-          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment">// get current mode, i.e. does body have the `.dark`` classname</span>
-        $mode <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'light'</span> <span class="token operator">:</span> <span class="token string">'dark'</span><span class="token punctuation">;</span>
-        <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span>$mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-      <span class="token comment">// toggle button click code</span>
-      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        $chk <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>$chk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token comment">// user wants persistance, save current state</span>
-          $upc <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">2</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
-          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"user-prefers-color"</span><span class="token punctuation">,</span> $upc<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-          <span class="token comment">// user doesn't want pesistace, delete saved key</span>
-          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">"user-prefers-color"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
-  </code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
 
     <!-- Modales -->
     <div id="addPokemonModal" class="modal fade">
@@ -630,6 +538,49 @@
       </div>
     </div>
 
+    <div id="deletePokemonModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form>
+            <div class="modal-header">
+              <h4 class="modal-title">Delete Employee</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>¿Seguro que quieres borrar este Pokémon?</p>
+              <p class="text-warning">
+                <small>No podemos deshacer esta acción.</small>
+              </p>
+              <div class="form-group">
+                <label>(Esto no debería estar visible)</label>
+                <input
+                  type="hidden"
+                  class="form-control"
+                  id="delete_id_pokemon"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                value="Cancel"
+              />
+              <input type="submit" class="btn btn-danger" value="Delete" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <script>
       $("#addPokemonModal").submit(function () {
         $("#addPokemonModal").modal("hide");
@@ -640,13 +591,17 @@
         $("#editPokemonModal").modal("hide");
       });
 
+      $("#deletePokemonModal").submit(function () {
+        delete_pokemon();
+        $("#editPokemonModal").modal("hide");
+      });
+
       $("#editPokemonModal").on("show.bs.modal", function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
 
         var identificador = parseInt(button.data("identificador"));
 
         var modal = $(this);
-        //modal.find();
 
         modal.find(".modal-title").text("Editar Pokémon " + identificador);
         modal.find("#edit_id_pokemon").val(identificador);
@@ -654,6 +609,19 @@
         modal.find("#edit_tipo_pokemon").val(button.data("tipo"));
         modal.find("#edit_debilidades_pokemon").val(button.data("debilidades"));
         modal.find("#edit_imagen_pokemon").val(button.data("imagen"));
+      });
+
+      $("#deletePokemonModal").on("show.bs.modal", function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+
+        var identificador = parseInt(button.data("identificador"));
+
+        var modal = $(this);
+
+        modal
+          .find(".modal-title")
+          .text("¿Borrar pokémon " + identificador + "?");
+        modal.find("#delete_id_pokemon").val(identificador);
       });
     </script>
 
@@ -675,7 +643,7 @@
           <a href="https://github.com/js-cookie/js-cookie">js-cookie</a> © Klaus
           Hartl, Fagner Brack &amp; GitHub Contributors <br />&nbsp;<br />
           Made with <span style="font-size: 80%">❤️</span>&nbsp; by Vino
-          Rodrigues | © 2020
+          Rodrigues | Gumiado con aún más <span style="font-size: 80%">❤️</span>&nbsp;<span style="font-size: 80%">❤️</span>&nbsp; por Andrés Millán
         </small>
       </p>
       <!-- gtag ends -->
