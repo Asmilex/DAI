@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./static/css/bootstrap-nightshade.css" />
 
     <!-- Prism.js for syntax highlighting -->
-    <link rel="stylesheet/less" type="text/css" href="./css/prism-combo.less" />
+    <!-- <link rel="stylesheet/less" type="text/css" href="./css/prism-combo.less" /> -->
     <style type="text/css" id="less:bootstrap-dark-css-prism-combo">
       html.dark code[class*="language-"],
       html.dark pre[class*="language-"] {
@@ -325,6 +325,22 @@
         </div>
         <div class="row mt-5">
           <div class="col-sm">
+            <h2>Pokémon</h2>
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Imagen</th>
+                  <th>Tipo</th>
+                  <th>Debilidades</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+            <br />
             <h2>Código de ejemplo para ver el tema oscuro</h2>
             <p>
               Puedes pulsar el botón <code>copy</code> para copiar el contenido.
@@ -603,5 +619,6 @@
         });
       });
     </script>
+    <script src="{{url_for('static', filename='js/codigo_p6.js')}}"></script>
   </body>
 </html>

@@ -3,6 +3,7 @@ from pickleshare import *
 from pymongo import MongoClient
 from bson.json_util import dumps
 
+
 from ejercicios.ordenacion import ordenacion_gnomo
 from ejercicios.criba import criba
 from ejercicios.regex import aplicar_regex
@@ -23,6 +24,13 @@ PYTHONHASHSEED = 'fdsfsljfksljfklds39042i4'
 # LO HAGO PORQUE ES UNA PRÁCTICA DE JUGUETE
 # QUE ESTÁ ALMACENADO ASÍ COMO ASÍ EN TEXTO PLANO.
 # ESTO Y NADA ES LO MISMO
+
+# NI ESTO TAMPOCO
+# LO HAGO PARA PODER SACAR COSAS DE LA API DESDE OTRAS URLS
+from flask_cors import CORS
+CORS(app)
+# Esta práctica es un coladero porque no me lo han explicado en condiciones.
+
 
 #
 # ──────────────────────────────────────────────────────────── III ──────────
