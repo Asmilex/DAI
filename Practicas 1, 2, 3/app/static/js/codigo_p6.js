@@ -1,6 +1,6 @@
 function cargar_pokemon() {
   $.ajax({
-    url: "http://192.168.1.45:5000/pokemon",
+    url: "/pokemon",
     type: "GET",
     dataType: "json",
 

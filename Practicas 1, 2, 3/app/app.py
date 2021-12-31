@@ -25,11 +25,16 @@ PYTHONHASHSEED = 'fdsfsljfksljfklds39042i4'
 # QUE ESTÁ ALMACENADO ASÍ COMO ASÍ EN TEXTO PLANO.
 # ESTO Y NADA ES LO MISMO
 
-# NI ESTO TAMPOCO
-# LO HAGO PARA PODER SACAR COSAS DE LA API DESDE OTRAS URLS
-from flask_cors import CORS
-CORS(app)
-# Esta práctica es un coladero porque no me lo han explicado en condiciones.
+#
+# ──────────────────────────────────────────────────────────── VI ──────────
+#   :::::: P R A C T I C A   6 : :  :   :    :     :        :          :
+# ──────────────────────────────────────────────────────────────────────
+#
+
+
+@app.route('/p6', methods=['GET', 'POST'])
+def p6():
+    return render_template('p6.html')
 
 
 #

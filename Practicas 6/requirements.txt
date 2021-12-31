@@ -1,3 +1,0 @@
-flask==2.0
-pickleshare==0.7.5
-pymongo
