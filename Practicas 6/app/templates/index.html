@@ -1,0 +1,607 @@
+<!-- Archivo modificado a partir de https://vinorodrigues.github.io/bootstrap-dark/test-nightshade.html -->
+<html lang="en" class="light">
+  <head>
+    <style></style>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- The page supports both dark and light color schemes, and the page author prefers dark. -->
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./static/css/bootstrap-nightshade.css" />
+
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet/less" type="text/css" href="./css/prism-combo.less" />
+    <style type="text/css" id="less:bootstrap-dark-css-prism-combo">
+      html.dark code[class*="language-"],
+      html.dark pre[class*="language-"] {
+        color: #ccc;
+        background: 0 0;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+      html.dark pre[class*="language-"] {
+        padding: 1em;
+        margin: 0.5em 0;
+        overflow: auto;
+      }
+      html.dark :not(pre) > code[class*="language-"],
+      html.dark pre[class*="language-"] {
+        background: #2d2d2d;
+      }
+      html.dark :not(pre) > code[class*="language-"] {
+        padding: 0.1em;
+        border-radius: 0.3em;
+        white-space: normal;
+      }
+      html.dark .token.block-comment,
+      html.dark .token.cdata,
+      html.dark .token.comment,
+      html.dark .token.doctype,
+      html.dark .token.prolog {
+        color: #999;
+      }
+      html.dark .token.punctuation {
+        color: #ccc;
+      }
+      html.dark .token.attr-name,
+      html.dark .token.deleted,
+      html.dark .token.namespace,
+      html.dark .token.tag {
+        color: #e2777a;
+      }
+      html.dark .token.function-name {
+        color: #6196cc;
+      }
+      html.dark .token.boolean,
+      html.dark .token.function,
+      html.dark .token.number {
+        color: #f08d49;
+      }
+      html.dark .token.class-name,
+      html.dark .token.constant,
+      html.dark .token.property,
+      html.dark .token.symbol {
+        color: #f8c555;
+      }
+      html.dark .token.atrule,
+      html.dark .token.builtin,
+      html.dark .token.important,
+      html.dark .token.keyword,
+      html.dark .token.selector {
+        color: #cc99cd;
+      }
+      html.dark .token.attr-value,
+      html.dark .token.char,
+      html.dark .token.regex,
+      html.dark .token.string,
+      html.dark .token.variable {
+        color: #7ec699;
+      }
+      html.dark .token.entity,
+      html.dark .token.operator,
+      html.dark .token.url {
+        color: #67cdcc;
+      }
+      html.dark .token.bold,
+      html.dark .token.important {
+        font-weight: 700;
+      }
+      html.dark .token.italic {
+        font-style: italic;
+      }
+      html.dark .token.entity {
+        cursor: help;
+      }
+      html.dark .token.inserted {
+        color: green;
+      }
+      html.light code[class*="language-"],
+      html.light pre[class*="language-"] {
+        color: #000;
+        background: 0 0;
+        text-shadow: 0 1px #fff;
+        font-size: 1em;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        word-wrap: normal;
+        line-height: 1.5;
+        -moz-tab-size: 4;
+        -o-tab-size: 4;
+        tab-size: 4;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+      }
+      html.light code[class*="language-"] ::-moz-selection,
+      html.light code[class*="language-"]::-moz-selection,
+      html.light pre[class*="language-"] ::-moz-selection,
+      html.light pre[class*="language-"]::-moz-selection {
+        text-shadow: none;
+        background: #b3d4fc;
+      }
+      html.light code[class*="language-"] ::selection,
+      html.light code[class*="language-"]::selection,
+      html.light pre[class*="language-"] ::selection,
+      html.light pre[class*="language-"]::selection {
+        text-shadow: none;
+        background: #b3d4fc;
+      }
+      @media print {
+        html.light code[class*="language-"],
+        html.light pre[class*="language-"] {
+          text-shadow: none;
+        }
+      }
+      html.light pre[class*="language-"] {
+        padding: 1em;
+        margin: 0.5em 0;
+        overflow: auto;
+      }
+      html.light :not(pre) > code[class*="language-"],
+      html.light pre[class*="language-"] {
+        background: #f5f2f0;
+      }
+      html.light :not(pre) > code[class*="language-"] {
+        padding: 0.1em;
+        border-radius: 0.3em;
+        white-space: normal;
+      }
+      html.light .token.cdata,
+      html.light .token.comment,
+      html.light .token.doctype,
+      html.light .token.prolog {
+        color: #708090;
+      }
+      html.light .token.punctuation {
+        color: #999;
+      }
+      html.light .token.namespace {
+        opacity: 0.7;
+      }
+      html.light .token.boolean,
+      html.light .token.constant,
+      html.light .token.deleted,
+      html.light .token.number,
+      html.light .token.property,
+      html.light .token.symbol,
+      html.light .token.tag {
+        color: #905;
+      }
+      html.light .token.attr-name,
+      html.light .token.builtin,
+      html.light .token.char,
+      html.light .token.inserted,
+      html.light .token.selector,
+      html.light .token.string {
+        color: #690;
+      }
+      html.light .language-css .token.string,
+      html.light .style .token.string,
+      html.light .token.entity,
+      html.light .token.operator,
+      html.light .token.url {
+        color: #9a6e3a;
+        background: hsla(0, 0%, 100%, 0.5);
+      }
+      html.light .token.atrule,
+      html.light .token.attr-value,
+      html.light .token.keyword {
+        color: #07a;
+      }
+      html.light .token.class-name,
+      html.light .token.function {
+        color: #dd4a68;
+      }
+      html.light .token.important,
+      html.light .token.regex,
+      html.light .token.variable {
+        color: #e90;
+      }
+      html.light .token.bold,
+      html.light .token.important {
+        font-weight: 700;
+      }
+      html.light .token.italic {
+        font-style: italic;
+      }
+      html.light .token.entity {
+        cursor: help;
+      }
+    </style>
+
+    <title>bootstrap-nightshade</title>
+
+    <style>
+      .d-clipboard {
+        position: relative;
+        float: right;
+      }
+      .btn-clipboard {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        opacity: 0.25;
+      }
+      .btn-clipboard:hover,
+      .btn-clipboard:active {
+        opacity: 1;
+      }
+      .token.comment {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body style="">
+    <header>
+      <nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-primary">
+        <div class="container">
+          <a class="navbar-brand">Práctica 6</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" id="nav-links">
+              <li id="nav-home" class="nav-item">
+                <a class="nav-link" href="./">Home</a>
+              </li>
+              <li id="nav-github" class="nav-item">
+                <a class="nav-link" href="https://github.com/asmilex/dai"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+            <form class="form-inline">
+              <div
+                class="custom-control custom-switch"
+                title=""
+                data-toggle="tooltip"
+                data-placement="left"
+                data-original-title="Modo oscuro"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="css-toggle-btn"
+                />
+                <label
+                  class="custom-control-label"
+                  for="css-toggle-btn"
+                ></label>
+              </div>
+              <div
+                class="custom-control custom-switch"
+                title=""
+                data-toggle="tooltip"
+                data-placement="left"
+                data-original-title="Recordar mi elección"
+              >
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="css-save-btn"
+                />
+                <label class="custom-control-label" for="css-save-btn"></label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mt-5 mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>Práctica 6: Frontend</h1>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-sm">
+            <h2>Código de ejemplo para ver el tema oscuro</h2>
+            <p>
+              Puedes pulsar el botón <code>copy</code> para copiar el contenido.
+              Es el código usado para poner el tema oscuro.
+            </p>
+
+            <div class="d-clipboard">
+              <button
+                type="button"
+                class="btn btn-outline-info btn-sm btn-clipboard"
+                title=""
+                data-original-title="Copy to clipboard"
+              >
+                Copy
+              </button>
+            </div>
+            <div class="code">
+              <pre
+                class="language-html"
+              ><code class=" language-js language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token function">$</span><span class="token punctuation">(</span>document<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token comment">// This code uses `localStorage` to save "user prefers color" persistently</span>
+      <span class="token comment">// This key used is `user-prefers-color`, and should be one of:</span>
+      <span class="token comment">//  0 = only used at first trigger, to indicate firts time selection</span>
+      <span class="token comment">//  1 = user wants light mode</span>
+      <span class="token comment">//  2 = user wants dark mode</span>
+      <span class="token comment">// the key can also be deleted to indicate user has no preference.</span>
+
+      <span class="token comment">// function to toggle the css</span>
+      <span class="token keyword">function</span> <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span><span class="token parameter">$mode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// amend the body classes</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>$mode <span class="token operator">==</span> <span class="token string">'dark'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// if on user prefers color then update stored value</span>
+        $upc <span class="token operator">=</span> window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>$upc <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// first time click</span>
+          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>$mode <span class="token operator">==</span> <span class="token string">'dark'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">2</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// function / listener action to toggle the button</span>
+      <span class="token keyword">function</span> <span class="token function">update_color_scheme_css</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $upc <span class="token operator">=</span> window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>$upc <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          $mode <span class="token operator">=</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>matchMedia <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>matches<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'dark'</span> <span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          $mode <span class="token operator">=</span> <span class="token punctuation">(</span>$upc <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'dark'</span> <span class="token operator">:</span> <span class="token string">'light'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-toggle-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'dark'</span> <span class="token operator">==</span> $mode<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span>$mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// initial mode discovery &amp; update button</span>
+      <span class="token function">update_color_scheme_css</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+        <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span> <span class="token string">"checked"</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// update every time it changes</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>matchMedia<span class="token punctuation">)</span> window<span class="token punctuation">.</span><span class="token function">matchMedia</span><span class="token punctuation">(</span><span class="token string">"(prefers-color-scheme: dark)"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span> update_color_scheme_css <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// toggle button click code</span>
+      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-toggle-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// disable further automatic toggles</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'user-prefers-color'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// get current mode, i.e. does body have the `.dark`` classname</span>
+        $mode <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'light'</span> <span class="token operator">:</span> <span class="token string">'dark'</span><span class="token punctuation">;</span>
+        <span class="token function">toggle_color_scheme_css</span><span class="token punctuation">(</span>$mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// toggle button click code</span>
+      <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        $chk <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#css-save-btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">"checked"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>$chk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// user wants persistance, save current state</span>
+          $upc <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"html"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass</span><span class="token punctuation">(</span><span class="token string">"dark"</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">2</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"user-prefers-color"</span><span class="token punctuation">,</span> $upc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          <span class="token comment">// user doesn't want pesistace, delete saved key</span>
+          window<span class="token punctuation">.</span>localStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">"user-prefers-color"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  </code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="copyright" class="text-center">
+      <p class="container text-center pt-3 border-top">
+        <small class="text-muted">
+          <a href="https://getbootstrap.com">Bootstrap</a> © The Bootstrap
+          Authors &amp; Twitter, Inc. |
+          <a href="https://jquery.com">jQuery</a> © The jQuery Foundation |
+          <a href="https://fontawesome.com/">Fontawesome</a> © Fonticons, Inc. |
+          <a href="https://lesscss.org/">Less.js</a> © The Less Core team |
+          <a href="https://prismjs.com/">Prism.js</a> © James DiGioia |
+          <a href="https://clipboardjs.com/">Clipboard.js</a> © Zeno Rocha |
+          <a href="https://github.com/jeresig/jquery.hotkeys">Hotkeys.js</a> ©
+          John Resig | <a href="https://showdownjs.com/">Showdown.js</a> ©
+          Estevão dos Santos |
+          <a href="https://www.bryanbraun.com/anchorjs/">Anchor.js</a> © Bryan
+          Braun |
+          <a href="https://github.com/js-cookie/js-cookie">js-cookie</a> © Klaus
+          Hartl, Fagner Brack &amp; GitHub Contributors <br />&nbsp;<br />
+          Made with <span style="font-size: 80%">❤️</span>&nbsp; by Vino
+          Rodrigues | © 2020
+        </small>
+      </p>
+      <!-- gtag ends -->
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- ** needed for toggle -->
+    <!-- jQuery first, then Popper.js + Bootstrap JS bundle -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- Clipboard.js for copy code -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+    <!-- Less.js -->
+    <script>
+      less = {
+        env: "production",
+        logLevel: 0,
+      };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js"></script>
+
+    <!-- Hotkeys.js for [D] hotkey -->
+    <script src="https://cdn.jsdelivr.net/gh/jeresig/jquery.hotkeys@0/jquery.hotkeys.js"></script>
+
+    <!-- Funciones originales -->
+    <script>
+      $(document).ready(function () {
+        // only when jQuery is ready
+
+        // init the tooltip
+        // ----------------------------------------
+        $('[data-toggle="tooltip"]')
+          .tooltip()
+          .on("mouseleave", function () {
+            $(this).tooltip("hide");
+          });
+
+        // Insert copy to clipboard button before .highlight
+        // borrowed from Bootstrap docs, uses Clipboard.js
+        // ----------------------------------------
+        $("div.code").each(function () {
+          var btnHtml =
+            '<div class="d-clipboard"><button type="button" class="btn btn-outline-info btn-sm btn-clipboard" title="Copy to clipboard">Copy</button></div>';
+          $(this).before(btnHtml);
+          $(".btn-clipboard")
+            .tooltip()
+            .on("mouseleave", function () {
+              $(this).tooltip("hide");
+            });
+        });
+        var clipboard = new ClipboardJS(".btn-clipboard", {
+          target: function (trigger) {
+            return trigger.parentNode.nextElementSibling;
+          },
+        });
+        clipboard.on("success", function (e) {
+          $(e.trigger)
+            .attr("title", "Copied!")
+            .tooltip("_fixTitle")
+            .tooltip("show")
+            .attr("title", "Copy to clipboard")
+            .tooltip("_fixTitle");
+          e.clearSelection();
+        });
+        clipboard.on("error", function (e) {
+          var modifierKey = /mac/i.test(navigator.userAgent)
+            ? "\u2318"
+            : "Ctrl-";
+          var fallbackMsg = "Press " + modifierKey + "C to copy";
+          $(e.trigger)
+            .attr("title", fallbackMsg)
+            .tooltip("_fixTitle")
+            .tooltip("show")
+            .attr("title", "Copy to clipboard")
+            .tooltip("_fixTitle");
+        });
+
+        // ========================================
+
+        // This code uses `localStorage` to save "user prefers color" persistently
+        // This key used is `user-prefers-color`, and should be one of:
+        //  0 = only used at first trigger, to indicate firts time selection
+        //  1 = user wants light mode
+        //  2 = user wants dark mode
+        // the key can also be deleted to indicate user has no preference.
+
+        // function to toggle the css
+        function toggle_color_scheme_css($mode) {
+          // amend the body classes
+          if ($mode == "dark") {
+            $("html").removeClass("light").addClass("dark");
+          } else {
+            $("html").removeClass("dark").addClass("light");
+          }
+          // if on user prefers color then update stored value
+          $upc = window.localStorage.getItem("user-prefers-color");
+          if ($upc !== null) {
+            if ($upc == 0) $("#css-save-btn").prop("checked", true); // first time click
+            window.localStorage.setItem(
+              "user-prefers-color",
+              $mode == "dark" ? 2 : 1
+            );
+          }
+        }
+
+        // function / listener action to toggle the button
+        function update_color_scheme_css() {
+          $upc = window.localStorage.getItem("user-prefers-color");
+          if ($upc === null || $upc == 0) {
+            $mode =
+              window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          } else {
+            $mode = $upc == 2 ? "dark" : "light";
+          }
+          $("#css-toggle-btn").prop("checked", "dark" == $mode);
+          toggle_color_scheme_css($mode);
+        }
+
+        // initial mode discovery & update button
+        update_color_scheme_css();
+        if (window.localStorage.getItem("user-prefers-color") !== null)
+          $("#css-save-btn").prop("checked", true);
+
+        // update every time it changes
+        if (window.matchMedia)
+          window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addListener(update_color_scheme_css);
+
+        // toggle button click code
+        $("#css-toggle-btn").bind("click", function () {
+          // disable further automatic toggles
+          if (window.localStorage.getItem("user-prefers-color") === null)
+            window.localStorage.setItem("user-prefers-color", 0);
+          // get current mode, i.e. does body have the `.dark`` classname
+          $mode = $("html").hasClass("dark") ? "light" : "dark";
+          toggle_color_scheme_css($mode);
+        });
+
+        // toggle button click code
+        $("#css-save-btn").bind("click", function () {
+          $chk = $("#css-save-btn").prop("checked");
+          if ($chk) {
+            // user wants persistance, save current state
+            $upc = $("html").hasClass("dark") ? 2 : 1;
+            window.localStorage.setItem("user-prefers-color", $upc);
+          } else {
+            // user doesn't want pesistace, delete saved key
+            window.localStorage.removeItem("user-prefers-color");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

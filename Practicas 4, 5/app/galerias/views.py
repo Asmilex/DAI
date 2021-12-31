@@ -36,9 +36,6 @@ def mostrar_cuadros(request):
 
 @permission_required('galerias.add_cuadro')
 def crear_cuadro(request):
-    model_name = 'cuadro'
-    all_perms_on_this_modal = Permission.objects.filter(codename__contains=model_name)
-
     if 'nombre' in request.POST:
         form = CrearCuadroForm(request.POST, request.FILES)
 
