@@ -155,6 +155,23 @@ function mostrar(data) {
   });
 }
 
+// ────────────────────────────────────────────────────────────────────────────────
+
+function cambiar_zoom(constante) {
+  zoom_actual = parseFloat(getComputedStyle(document.body).getPropertyValue('zoom'))
+
+  zoom_nuevo = zoom_actual + constante
+  zoom_nuevo = zoom_nuevo < 0.25? 0.25 : zoom_nuevo
+  zoom_nuevo = zoom_nuevo >   50? 50   : zoom_nuevo
+
+  document.body.style.setProperty('zoom', zoom_actual + constante);
+
+  // window.dispatchEvent(new KeyboardEvent('keydown', {
+  //   key: "+",
+  //   ctrlKey: true
+  // }))
+}
+
 $(document).ready(function(){
   cargar_pokemon()
 })
