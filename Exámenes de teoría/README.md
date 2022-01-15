@@ -14,13 +14,13 @@ $(selector).function(argumentos);
 
 Dependiendo de lo que pongamos en `selector`, estaremos seleccionando diferentes elementos de un documento. Por ejemplo, si escribimos lo siguiente, estaremos seleccionando todos los atributos con class `a`:
 
-```
+```javascript
 $(".a");
 ```
 
 Y si lo que buscamos es que se seleccionen aquellos elementos div que tengan el atributo `id` con valor `2`, podemos escribir lo siguiente:
 
-```
+```javascript
 $("div[2]");
 ```
 
@@ -66,7 +66,7 @@ Algunas de las funciones que suelen implementar son filtros, queries para selecc
 
 En Django, se definen los modelos en el archivo `models.py`. Un ejemplo sería:
 
-```
+```python
 from django.db import models
 
 class Musico(models.Model):
@@ -117,3 +117,88 @@ Para un proyecto a gran escala, Django es una opción mejor. Si lo que buscas es
 ### 10. A grandes rasgos: ¿cómo crees que funciona intermanente la autenticación de Django?
 
 (No tengo nada claro ésta. Supongo que habrá una especie de demonio por encima que vigile que tengas permisos para acceder a un recurso. Necesitarás un token para afirmar que eres quien dices ser, y dependiendo del nivel de acceso que tengas, te permitirá acceder a unas cosas u otras. Cómo lo haga internamente sepa dios).
+
+
+## ¿Enero 2018?
+
+### 1. ¿Para qué sirve jQuery? ¿Cómo es la sintaxis de una función? Ejemplo que afecte a todos los párrafos de un documento con class = "a" y otro a una imagen con id = "mi_imagen"
+
+[Ver este examen](#1-para-qué-sirve-jquery-cómo-es-la-sintaxis-de-una-función-ejemplo-que-afecte-a-todos-los-párrafos-de-un-documento-con-class--a-y-otro-a-una-imagen-con-id--mi_imagen)
+
+La imagen se puede obtener con `$("img[mi_imagen]"`.
+
+### 2. ¿Cómo sería la URL de una petición GET al servidor 'pepito.com' por el puerto 80, con la ruta 'restaurantes/lista' y con los parámetros `orden = descendiente` y `todos = si`?
+
+`pepito.com/restaurantes/lista?orden=descendiente&todos=si`.
+
+### 3. ¿Y una llamada POST con los mismos parámetros?
+
+```
+POST /restaurantes/lista
+Host: pepito.com
+Content-Type: application/json
+
+{
+    "orden": "descendiente",
+    "todos": "si"
+}
+```
+
+### 4. ¿Cuál es la utilidad habitual de los verbos HTTP en una API REST?
+
+GET: conseguir un recurso. Idempotente y seguro.
+PUT: actualizar un recurso. Es idempotente, pero cambia el estado del URI.
+POST: crear un recurso. No es idempotente ni seguro.
+DELETE: eliminar un recurso. Es idempotente, pero seguro.
+
+
+### 5. Explica cómo actualizar con AJAX una página web (por ejemplo, al pulsar el botón de mostrar más info de la página).
+
+La estructura general suele ser la siguiente:
+
+1. Crea el elemento de la vista correspondiente. En este caso, el botón
+2. Haz que el elemento llame a Javascript cuando se ejecute. Para un botón, podemos usar `onclick=funcion()`. Otra opción es tener disparados que vigilen el estado del elemento.
+3. Deja que AJAX haga su magia. Si puedes usar algo como jQuery para simplificar las llamadas, mejor.
+4. Cuando el recurso esté listo, actualiza la parte relevante de la vista.
+
+```html
+<button onclick="mostrar_mas_info()">Mostrar más info</button>"
+<p id="mas-info" hidden>Mucho texto</p>
+```
+
+```javascript
+function mostrar_mas_info() {
+    $.ajax({
+        url: ...,
+        success: function(data) {
+            $("#mas-info").show();
+        }
+    })
+}
+```
+
+### 6. Explica las diferencias entre una base de datos SQL y una base de datos NoSQL.
+
+Una base de datos SQL permite manipular datos en una base relacional. Esto se realiza mediante un lenguaje de consultas. En este caso, SQL.
+
+A diferencia de éstas, NoSQL no utiliza base de datos relacionales, sino alguna basada en grafos, documentos, pares clave-valor o similares. Estas surgiendo a raíz de la necesidad de tener datos no estructurados, debido a la gran cantidad de datos diversos que se manejan en el campo del big data. Uno de estos sistemas de bases de datos no relacionales es MongoDB.
+
+Tienen la ventaja de que escalan fácilmente, permiten modelos de datos más flexibles y esquemas dinámicos para datos no estructurados. A diferencia de los de SQL, escalan horizontalmente.
+
+
+### 7. ¿Cómo funcionan y para qué sirven las sesiones?
+
+Puesto que HTTP es stateless, no es posible saber qué es lo que un usuario hizo en la aplicación con anterioridad. Las sesiones permiten a los servidores mantener información sobre los usuarios que acceden a una aplicación. Asociando cookies con un token a un registro en el servidor, se mantiene información de la conexión. Así, se conoce quién es el usuario que está accediendo en cada momento.
+
+[Imagen ilustrativa de cómo funciona](http://machinesaredigging.com/blog-mad/wp-content/uploads/2013/10/how_does_a_session_work.jpg)
+
+
+### 8. ¿Qué es el MVC? ¿Cómo está reflejado en Django?
+
+MVC es un patrón de diseño que separa la vista, el modelo y el controlador.
+
+- La vista es la parte que se le muestra a los usuarios. Acepta y muestra datos.
+- El modelo es el funcionamiento interno de la aplicación. Ocupa la parte central del procesamiento. Almacena también los datos.
+- El controlador prepara la información para comunicarla entre ambas partes.
+
+Django no adopta fielmente el patrón MVC. Implementa un patrón diferente llamado [MTV (Model, Template and View)](https://data-flair.training/blogs/django-mtv-architecture/).
