@@ -123,7 +123,7 @@ Para un proyecto a gran escala, Django es una opción mejor. Si lo que buscas es
 
 ### 1. ¿Para qué sirve jQuery? ¿Cómo es la sintaxis de una función? Ejemplo que afecte a todos los párrafos de un documento con class = "a" y otro a una imagen con id = "mi_imagen"
 
-[Ver este examen](#1-para-qué-sirve-jquery-cómo-es-la-sintaxis-de-una-función-ejemplo-que-afecte-a-todos-los-párrafos-de-un-documento-con-class--a-y-otro-a-una-imagen-con-id--mi_imagen)
+[Ver este examen](#1-para-qué-sirve-jquery-cómo-es-la-sintáxis-de-una-función-de-jquery-pon-un-ejmplo-de-función-que-afecte-a-todos-los-elemntos-de-un-html-con-atributo-classa-y-otro-ejemplo-que-afecte-al-elemento-div-id2div)
 
 La imagen se puede obtener con `$("img[mi_imagen]"`.
 
