@@ -151,7 +151,7 @@ Content-Type: application/json
 GET: conseguir un recurso. Idempotente y seguro.
 PUT: actualizar un recurso. Es idempotente, pero cambia el estado del URI.
 POST: crear un recurso. No es idempotente ni seguro.
-DELETE: eliminar un recurso. Es idempotente, pero seguro.
+DELETE: eliminar un recurso. Es idempotente, pero no seguro.
 
 
 ### 5. Explica cómo actualizar con AJAX una página web (por ejemplo, al pulsar el botón de mostrar más info de la página).
@@ -183,7 +183,7 @@ function mostrar_mas_info() {
 
 Una base de datos SQL permite manipular datos en una base relacional. Esto se realiza mediante un lenguaje de consultas. En este caso, SQL.
 
-A diferencia de éstas, NoSQL no utiliza base de datos relacionales, sino alguna basada en grafos, documentos, pares clave-valor o similares. Estas surgiendo a raíz de la necesidad de tener datos no estructurados, debido a la gran cantidad de datos diversos que se manejan en el campo del big data. Uno de estos sistemas de bases de datos no relacionales es MongoDB.
+A diferencia de éstas, NoSQL no utiliza base de datos relacionales, sino alguna basada en grafos, documentos, pares clave-valor o similares. Estas surgiendo a raíz de la necesidad de tener datos no estructurados, en parte debido a la gran cantidad de datos diversos que se manejan en el campo del big data. Uno de estos sistemas de bases de datos no relacionales es MongoDB.
 
 Tienen la ventaja de que escalan fácilmente, permiten modelos de datos más flexibles y esquemas dinámicos para datos no estructurados. A diferencia de los de SQL, escalan horizontalmente.
 
