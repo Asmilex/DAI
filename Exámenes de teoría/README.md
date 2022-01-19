@@ -12,7 +12,7 @@ La sintaxis de una función de jQuery es la siguiente:
 $(selector).function(argumentos);
 ```
 
-Dependiendo de lo que pongamos en `selector`, estaremos seleccionando diferentes elementos de un documento. Por ejemplo, si escribimos lo siguiente, estaremos seleccionando todos los atributos con class `a`:
+Dependiendo de lo que pongamos en `selector`, tomaremos diferentes elementos de un documento. Por ejemplo, si escribimos lo siguiente, estaremos seleccionando todos los atributos con class `a`:
 
 ```javascript
 $(".a");
@@ -35,6 +35,7 @@ Los métodos POST se usan para crear recursos en la URL especificada. Los datos 
 
 En el ejemplo de antes, si quisiéramos crear un usuario, podríamos hacer una llamada POST a la URL `http://api.com/users` y enviar los datos del usuario en el cuerpo de la petición.
 
+Échale un vistazo a la pregunta del [siguiente examen](#3-y-una-llamada-post-con-los-mismos-parámetros) para comprobar cómo se haría.
 
 
 ### 3. ¿Cómo se llama en Django el archivo donde están teste tipo de instrucciones? ¿Para qué sirven? Explicar con detalle qué signiifca cada parte de cada argumento de la llamada.
@@ -55,6 +56,7 @@ Este tipo de frameworks simplifica el diseño del CSS del frontend. Incluyen una
 Una de las utilidades que incluyen suelen ser un sistema de *grids*, que facilita la colocación de elementos en la página.
 
 Hay muchas famosas. Por ejemplo, la ya mencionada Bootstrap, Materialize, Tailwind...
+
 
 ### 5. ¿Qué es un ORM? En Django, ¿cómo se llama el archivo relacionado con el ORM?
 
@@ -88,7 +90,7 @@ Y una consulta sería `Musico.objects.filter(name="Juan")`.
 
 La principal característica de AJAX es que sus llamadas son asíncronas. Esto significa que no se bloquea la página, y se puede continuar con otras tareas. Cuando AJAX haya terminado su procedimiento, el contenido se actualizará.
 
-Es importante diseñar las funciones para respetar la asincronía. Esto significa que, si estamos espreando a algún recurso, debemos esperar a que se complete la petición para usarlo.
+Es importante diseñar las funciones para respetar la asincronía. Esto significa que, si estamos esperando a algún recurso, debemos esperar a que se complete la petición para poder usarlo.
 
 
 ### 7. ¿Qué harías para darle a tu aplicación la capacidad de cambiar de lengua?
@@ -100,14 +102,14 @@ Por ejemplo, gettext en Python. Se escribe la aplicación en un idioma (generalm
 
 ### 8. Comenta los cambios que has hecho para el despliegue de la aplicación de Django
 
-(No hemos hecho esto. Aún así, si quieres responder a esta pregunta, mira la [checklist](https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/)).
+(No hemos hecho esto. Aún así, si quieres responder a esta pregunta, mira la [checklist de Django](https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/)).
 
 
 ### 9. ¿Qué diferencias has encontrado entre los frameworks "Flask" y "Django"?
 
-Ambos son frameworks de Python. La principal diferencia es que Flask es un microframework. Es más sencillo empezar a programar. Las URLs se definen con decoradores. A partir de ahí, no tiene demasiadas restricciones. Todo se encapsula en un objeto.
+Ambos son frameworks de Python. La principal diferencia es que Flask es un microframework. Es más sencillo empezar a programar. Las URLs se definen con decoradores. A partir de ahí, no tiene demasiadas restricciones. Todo se encapsula en un objeto, que suele denominarse `app`.
 
-Django, sin embargo, es una bestia diferente. Su estructura es mucho más rígida. Implementa middlewares, modelos, urls, seguridad, autenticación, bases de datos... De entrada, te pide que aprendas su estructura. Sin embargo, una vez lo haces, facilita enormemente el desarrollo del stack.
+Django, sin embargo, es una bestia diferente. Su estructura es mucho más rígida. Implementa middlewares, ORMs, urls, seguridad, autenticación, diferentes bases de datos... De entrada, te pide que aprendas su estructura. Sin embargo, una vez lo haces, facilita enormemente el desarrollo del stack.
 
 Para un proyecto a gran escala, Django es una opción mejor. Si lo que buscas es algo casero, Flask parece más intuitivo a priori.
 
@@ -116,7 +118,7 @@ Para un proyecto a gran escala, Django es una opción mejor. Si lo que buscas es
 
 ### 10. A grandes rasgos: ¿cómo crees que funciona intermanente la autenticación de Django?
 
-(No tengo nada claro ésta. Supongo que habrá una especie de demonio por encima que vigile que tengas permisos para acceder a un recurso. Necesitarás un token para afirmar que eres quien dices ser, y dependiendo del nivel de acceso que tengas, te permitirá acceder a unas cosas u otras. Cómo lo haga internamente sepa dios).
+(No tengo nada claro ésta. Supongo que habrá una especie de demonio por encima que vigile que tengas permisos para acceder a un recurso. O quizás un servicio middleware que intercepte la petición, comprobando que se cumple lo requerido. Necesitarás un token para afirmar que eres quien dices ser, y dependiendo del nivel de acceso que tengas, te permitirá acceder a unas cosas u otras. Cómo lo haga internamente sepa dios).
 
 
 ## ¿Enero 2018?
