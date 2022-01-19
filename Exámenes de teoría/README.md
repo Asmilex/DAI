@@ -136,7 +136,7 @@ La imagen se puede obtener con `$("img[mi_imagen]"`.
 ### 3. ¿Y una llamada POST con los mismos parámetros?
 
 ```
-POST /restaurantes/lista
+POST /restaurantes/lista HTTP/1.1
 Host: pepito.com
 Content-Type: application/json
 
